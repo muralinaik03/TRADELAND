@@ -113,6 +113,8 @@ class property_details(models.Model):
     property_ownership = models.ForeignKey(property_ownership,on_delete=models.CASCADE)
     width_of_facing_road = models.PositiveIntegerField()
     description = models.TextField(blank=True)
+    yt_video = models.CharField(max_length=500,default='https://player.vimeo.com/video/73221098')
+    map = models.CharField(max_length=500,default='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.2455290309986!2d82.98937350000001!3d25.2623247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e3320e885927b%3A0x78ac04d1bac708f0!2sIIT%20(BHU)%20Varanasi!5e0!3m2!1sen!2sin!4v1668192349845!5m2!1sen!2sin')
 
     class Meta:
         verbose_name_plural = "property_details"
