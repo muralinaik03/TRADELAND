@@ -75,12 +75,12 @@ class property_ownership(models.Model):
     def __str__(self):
         return self.property_ownership
 
-class pincode(models.Model):
-    pincode = models.CharField(max_length=6)
-    city = models.ForeignKey(city, on_delete=models.CASCADE)
+# class pincode(models.Model):
+#     pincode = models.CharField(max_length=6)
+#     city = models.ForeignKey(city, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.pincode
+#     def __str__(self):
+#         return self.pincode
 
 class property(models.Model):
     title = models.CharField(max_length=100)
@@ -91,7 +91,7 @@ class property(models.Model):
     area = models.PositiveIntegerField()
     price = models.PositiveBigIntegerField()
     city = models.ForeignKey(city,on_delete=models.CASCADE)
-    pincode = models.ForeignKey(pincode, on_delete=models.SET_NULL,null=True)
+    # pincode = models.ForeignKey(pincode, on_delete=models.SET_NULL,null=True)
     main_picture = models.ImageField(upload_to=get_file_path)
 
     class Meta:
