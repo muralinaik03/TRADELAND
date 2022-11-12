@@ -1,6 +1,8 @@
 {% extends 'testing/basev3.html'%}
 
-{%block title%}{{prop.title}}{%endblock%}
+{%block title%}
+  {{prop.title}}
+{%endblock%}
 
 {%block content%}
     <div class="container">
@@ -10,7 +12,7 @@
                 <div class="col-md-12 col-lg-8">
                   <div class="title-single-box">
                     <h1 class="title-single">{{prop.title}}</h1>
-                    <span class="color-text-a">{{prop.city}}, {{prop.state}}</span>
+                    <span class="color-text-a">{{prop.city}}, {{prop.city.state}}</span>
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
@@ -31,7 +33,6 @@
               </div>
             </div>
         </section><!-- End Intro Single-->
-
         <section class="property-single nav-arrow-b">
             <div class="container">
               <div class="row justify-content-center">
@@ -57,11 +58,11 @@
                   <div class="row justify-content-between">
                     <div class="col-md-5 col-lg-4">
                       <div class="property-price d-flex justify-content-center foo">
-                        <div class="card-header-c d-flex">
+                        <div class="card-header-c d-flex" style="width: auto;">
                           <div class="card-box-ico">
-                            <span class="bi bi-cash">$</span>
+                            <span class="bi bi-cash">&#8377;</span>
                           </div>
-                          <div class="card-title-c align-self-center">
+                          <div class="card-title-c align-self-center" style="width:auto;">
                             <h5 class="title-c">{{prop.price}}</h5>
                           </div>
                         </div>
@@ -263,7 +264,7 @@
     </div>
 {%else%}
     <p class="description color-text-a">
-            <h2>This is a PREMIUM property</h2>
+            <h2>This is a <span style="color: #068932;">PREMIUM</span> property</h2>
             <p>The extra property details and contact details 
                 of this property can only be viewed by premium
                 clients. You can purchase premium <a href="/premium">here</a>.
