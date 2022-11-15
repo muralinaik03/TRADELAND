@@ -1,7 +1,7 @@
 {% extends 'testing/basev3.html'%}
 
-{%block title%}My properties{%endblock%}
-{%block content%}
+{% block title %}Wishlisted properties{% endblock %}
+{%block content %}
 <div class="container">
     <br>
     <br>
@@ -10,8 +10,8 @@
           <div class="row">
             <div class="col-md-12 col-lg-8">
               <div class="title-single-box">
-                <h1 class="title-single">My Properties</h1>
-                <span class="color-text-a">{{user}}'s properties</span>
+                <h1 class="title-single">Wishlisted Properties</h1>
+                <span class="color-text-a">Here are your wishlisted properties</span>
               </div>
             </div>
             <div class="col-md-12 col-lg-4">
@@ -21,7 +21,7 @@
                     <a href="{%url 'home'%}">Home</a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    My properties
+                    My Wishlist
                   </li>
                 </ol>
               </nav>
@@ -29,33 +29,29 @@
           </div>
         </div>
     </section><!-- End Intro Single-->
-    <button onclick="location.href='/addproperty'" class="btn btn-primary" style="background-color: #068932; border-color: #068932; margin-right: 20px;">Add Property</button>
-    <br>
-    <br>
-    <br>
     {% if user_properties %}
         <section class="property-grid grid">
             <div class="container">
             <div class="row">
-              {% for prop in user_properties%}
+              {% for wish in user_properties%}
                 <div class="col-md-4">
                 <div class="card-box-a card-shadow">
                     <div class="img-box-a">
-                    <img src="{{prop.main_picture.url}}" alt="" class="img-a img-fluid" width="600" height="800">
+                    <img src="{{wish.prop.main_picture.url}}" alt="" class="img-a img-fluid" width="600" height="800">
                     </div>
                     <div class="card-overlay">
                     <div class="card-overlay-a-content">
                         <div class="card-header-a">
                         <h2 class="card-title-a">
-                            <a href="#">{{prop}}
+                            <a href="#">{{wish.prop}}
                             </a>
                         </h2>
                         </div>
                         <div class="card-body-a">
                         <div class="price-box d-flex">
-                            <span class="price-a">Buy | {{prop.price}}</span>
+                            <span class="price-a">Buy | {{wish.prop.price}}</span>
                         </div>
-                        <a href="/properties/{{prop.id}}" class="link-a">Click here to view
+                        <a href="/properties/{{wish.prop.id}}" class="link-a">Click here to view
                             <span class="bi bi-chevron-right"></span>
                         </a>
                         </div>
@@ -63,17 +59,17 @@
                         <ul class="card-info d-flex justify-content-around">
                             <li>
                             <h4 class="card-info-title">Area</h4>
-                            <span>{{prop.area}} m
+                            <span>{{wish.prop.area}} m
                                 <sup>2</sup>
                             </span>
                             </li>
                             <li>
                             <h4 class="card-info-title">City</h4>
-                            <span>{{prop.city}}</span>
+                            <span>{{wish.prop.city}}</span>
                             </li>
                             <li>
                             <h4 class="card-info-title">Agent</h4>
-                            <span>{{prop.agent.first_name}}</span>
+                            <span>{{wish.prop.agent.first_name}}</span>
                             </li>
                             <li>
                         </ul>
@@ -82,9 +78,7 @@
                     </div>
                 </div>
                 <div class="form-actions" style="text-align: center;">
-                        <button onclick="location.href='/updateproperty/{{prop.id}}'" class="btn btn-primary" style="background-color: #068932; border-color: #068932; margin-right: 20px;">Update</button>
-                        <button onclick="location.href='/deleteproperty/{{prop.id}}'" class="btn btn-primary" style="background-color: black; border-color: black;">Delete</button>
-                        <br>
+                    <button onclick="location.href='/removefromwishlist/{{wish.prop.id}}'" class="btn btn-primary" style="background-color: black; border-color: black;">Remove</button>
                 </div>
                 </div>
             {%endfor%}
@@ -92,7 +86,7 @@
             </div>
         </section>
     {% else %}
-        <p>Uh oh! There are no properties listed by you.</p>
+        <p>Your wishlist is empty! Add your favourite properties by wishlisting them.</p>
     {%endif%}
 </div>
 {%endblock%}

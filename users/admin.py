@@ -8,3 +8,4 @@ from .models import *
 # Register your models here.
 admin.site.register(users)
 admin.site.register(gender_of_user)
+admin.site.register(wishlist)

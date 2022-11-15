@@ -1,17 +1,18 @@
-{%extends 'testing/basev3.html'%}
+{% extends 'testing/basev3.html'%}
 
-{%block title %}
-Add Property - TradeLand
+{%block title%}
+Add Image Form
 {%endblock%}
-{%block content %}
-    {% load crispy_forms_tags %}
+
+{%block content%}
+{% load crispy_forms_tags %}
     <div class="container">
         <section class="intro-single">
             <div class="container">
               <div class="row">
                 <div class="col-md-12 col-lg-8">
                   <div class="title-single-box">
-                    <h1 class="title-single">Add Property</h1>
+                    <h1 class="title-single">Add Image to {{prop.title}}</h1>
                     <span class="color-text-a">Please fill the following details below:</span>
                   </div>
                 </div>
@@ -22,7 +23,10 @@ Add Property - TradeLand
                         <a href="{%url 'home'%}">Home</a>
                       </li>
                       <li class="breadcrumb-item active" aria-current="page">
-                        Add Property
+                        <a href="{%url 'viewproperty' prop.id%}">{{prop.title}}</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Add Image
                       </li>
                     </ol>
                   </nav>
@@ -32,22 +36,15 @@ Add Property - TradeLand
         </section>
         <form method="POST" enctype="multipart/form-data">
             {%csrf_token%}
-            <h2>Basic Information of Property</h2>
             <br>
-            {{prop_form|crispy}}
-            <br>
-            <br>
-            <h2>Additional Details</h2>
-            <br>
-            {{prop_details_form|crispy}}
-            <br>
+            {{form|crispy}}
             <br>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary" style="background-color: #068932; border-color: #068932;">Submit</button>
             </div>
             <br>
             <div class="form-actions">
-                <button onclick="location.href='/home'" class="btn btn-primary" style="background-color: black; border-color: black;">Cancel</button>
+                <a href="{%url 'viewproperty' prop.id%}" class="btn btn-primary" style="background-color: black; border-color: black;">Cancel</a>
             </div>
         </form>
     </div>

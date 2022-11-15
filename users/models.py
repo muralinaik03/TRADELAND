@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from tradeland.settings import BASE_DIR
+from property.models import property
 import uuid
 import os
 
@@ -31,12 +32,20 @@ class users(models.Model):
     description = models.TextField(blank=True)
     profile_picture = models.ImageField(null=True,blank=True,upload_to=get_file_path)
     mobile_number = models.CharField(max_length=10,default='0000000000',null=False,validators=[validate_phone])
-    no_of_properties_sold = models.PositiveIntegerField(default=0)
-    no_of_properties_bought = models.PositiveIntegerField(default=0)
     is_premium_agent = models.BooleanField(default=False)
     is_premium_client = models.BooleanField(default=False)
     rating = models.FloatField(null=True,default=0)
 
     def __str__(self):
         return self.user.username
+
+class wishlist(models.Model):
+    prop =  models.ForeignKey(property,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.prop.title + " "+self.user.username
+    
+    class Meta:
+        verbose_name_plural = "wishlist"
 

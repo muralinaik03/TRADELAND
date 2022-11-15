@@ -29,6 +29,7 @@ class city(models.Model):
 class facing(models.Model):
     facing = models.CharField(max_length=11)
 
+    # To correct plural showin in admin.
     class Meta:
         verbose_name_plural = "facing"
 
@@ -131,7 +132,7 @@ class property_images(models.Model):
         verbose_name_plural = "property_images"
 
     def __str__(self):
-        return self.title
+        return self.property.title + " "+ self.title
 
 class property_features(models.Model):
     property = models.ForeignKey(property,on_delete=models.CASCADE)
@@ -142,3 +143,14 @@ class property_features(models.Model):
 
     def __str__(self):
         return self.feature
+
+
+class featured(models.Model):
+    title = models.CharField(max_length=30)
+    text = models.CharField(max_length=30)
+    prop = models.ForeignKey(property,on_delete=models.CASCADE)
+    city_state = models.CharField(max_length=25)
+    pincode = models.CharField(max_length=6)
+
+    def __str__(self):
+        return self.text + self.title

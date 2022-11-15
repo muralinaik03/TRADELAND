@@ -1,0 +1,20 @@
+{%extends 'testing/basev3.html'%}
+
+{%block title%}
+Premium
+{%endblock%}
+
+{%block content%}
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {%if havepremium %}
+    <h1>Thanks for being a <span style="color: #068932;">premium </span>client! &#10084</h1>
+    {%else%}
+    <h1>Please pay $100 to +91 6969696969. We will make you a <span style="color: #068932;">premium</span> client</h1>
+    {%endif%}
+</div>
+{%endblock%}

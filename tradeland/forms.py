@@ -35,3 +35,12 @@ class add_property_details_form(ModelForm):
         model = property_details
         fields = ['length','breadth','floors_allowed','facing','overlooking','possession','boundary_wall','transaction_type','property_ownership','width_of_facing_road','description','yt_video','map']
 
+class add_image_form(ModelForm):
+    class Meta:
+        model = property_images
+        fields = ['title','image']
+
+class add_feature_form(ModelForm):
+    class Meta:
+        model = property_features
+        fields = ['feature']

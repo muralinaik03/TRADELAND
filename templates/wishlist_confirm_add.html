@@ -1,0 +1,18 @@
+{%extends 'testing/basev3.html'%}
+
+{%block content%}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+<h2>Are you sure you want {{prop}} to add to wishlist?</h2>
+<form method="post">
+    {%csrf_token%}
+    <input class ="btn btn-primary" type="Submit" name="yes" id="yes" value="Yes" style="background-color: #068932; border-color: #068932; margin-right: 10px;">
+    <button onclick="location.href='/deletefeature/{{prop.id}}'" class="btn btn-primary" style="background-color: black; border-color: black;">Cancel</button>
+</form>
+</div>
+{%endblock%}

@@ -32,6 +32,7 @@
 <body>
   <!-- ======= Property Search Section ======= -->
   <div class="click-closed"></div>
+  <!--/ Form Search Star /-->
   <div class="box-collapse">
     <div class="title-box-d">
       <h3 class="title-d">Search Property</h3>
@@ -65,11 +66,9 @@
               <input type="number" class="form-control form-control-lg form-control-a" name="search_max_area" value="0" required>
           <label class="pb-2" for="Type" name="">Min Price (in &#8377;)</label>
               <input type="number" class="form-control form-control-lg form-control-a" name="search_min_price" value="0" required>
-          <label class="pb-2" for="Type" name="">Max Price in (&#8377;)</label>
+          <label class="pb-2" for="Type" name="">Max Price in &#8377;)</label>
               <input type="number" class="form-control form-control-lg form-control-a" name="search_max_price" value="0" required>
           <div class="col-md-12">
-          <br>
-          <br>
             <button type="submit" class="btn btn-b">Search Property</button>
           </div>
         </div>
@@ -77,7 +76,6 @@
     </div>
     </form>
   </div><!-- End Property Search Section -->>
-
 
     <!-- ======= Header/Navbar ======= -->
     <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
@@ -113,13 +111,13 @@
               </li>
     
               <li class="nav-item">
-                <a class="nav-link " href="{% url 'about' %}">About</a>
+                <a class="nav-link " href="contact.html">Contact</a>
               </li>
               {%if user.is_authenticated %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.first_name}} {{user.last_name}}</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item " href="{% url 'wishlist' %}">Wishlist</a>
+                  <a class="dropdown-item " href="property-single.html">Wishlist</a>
                   <a class="dropdown-item " href="agents-grid.html">My profile</a>
                   <a class="dropdown-item " href="/logout">Log Out</a>
                 </div>

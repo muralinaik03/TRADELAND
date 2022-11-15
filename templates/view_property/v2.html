@@ -1,0 +1,293 @@
+{% extends 'testing/basev3.html'%}
+
+{%block title%}
+  {{prop.title}}
+{%endblock%}
+
+{%block content%}
+    <div class="container">
+        <section class="intro-single">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12 col-lg-8">
+                  <div class="title-single-box">
+                    <h1 class="title-single">{{prop.title}}</h1>
+                    <span class="color-text-a">{{prop.city}}, {{prop.city.state}}</span>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                  <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="{%url 'home'%}">Home</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        properties
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        {{prop.title}}
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+        </section><!-- End Intro Single-->
+{%if user == prop.agent %}
+        <div class="form-actions" style="text-align: center;">
+          <button onclick="location.href='/updateproperty/{{prop.id}}'" class="btn btn-primary" style="background-color: #068932; border-color: #068932; margin-right: 10px;">Update Property</button>
+          <button onclick="location.href='/addimage/{{prop.id}}'" class="btn btn-primary" style="background-color: #068932; border-color: #068932; margin-right: 10px;">Add Image</button>
+          <button onclick="location.href='/addfeature/{{prop.id}}'" class="btn btn-primary" style="background-color: #068932; border-color: #068932; margin-right: 10px;">Add Feature</button>
+          <button onclick="location.href='/deleteproperty/{{prop.id}}'" class="btn btn-primary" style="background-color: black; border-color: black; margin-right: 10px;">Delete Property</button>
+          <button onclick="location.href='/deleteimage/{{prop.id}}'" class="btn btn-primary" style="background-color: black; border-color: black; margin-right: 10px;">Delete Image</button>
+          <button onclick="location.href='/deletefeature/{{prop.id}}'" class="btn btn-primary" style="background-color: black; border-color: black;">Delete Feature</button>
+        </div>
+        <br>
+        <br>
+{%endif%}
+        <section class="property-single nav-arrow-b">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div id="property-single-carousel" class="swiper">
+                    <div class="swiper-wrapper">
+                      <div class="carousel-item-b swiper-slide">
+                        <img src="{{prop.main_picture.url}}" alt="" width="1000" height="600">
+                      </div>
+                      {% for img in prop_images%}
+                      <div class="carousel-item-b swiper-slide">
+                        <img src="{{img.image.url}}" alt="" width="1000" height="600">
+                      </div>
+                      {%endfor%}
+                    </div>
+                  </div>
+                  <div class="property-single-carousel-pagination carousel-pagination"></div>
+                </div>
+              </div>
+      
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="row justify-content-between">
+                    <div class="col-md-5 col-lg-4">
+                      <div class="property-price d-flex justify-content-center foo">
+                        <div class="card-header-c d-flex" style="width: auto;">
+                          <div class="card-box-ico">
+                            <span class="bi bi-cash">&#8377;</span>
+                          </div>
+                          <div class="card-title-c align-self-center" style="width:auto;">
+                            <h5 class="title-c">{{prop.price}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="property-summary">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="title-box-d section-t4">
+                              <h3 class="title-d">Quick Summary</h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="summary-list">
+                          <ul class="list">
+                            <li class="d-flex justify-content-between">
+                              <strong>Property ID:</strong>
+                              <span>{{prop.id}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>City:</strong>
+                              <span>{{prop.city}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Agent:</strong>
+                              <span>{{prop.agent}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Area:</strong>
+                              <span>{{prop.area}}m
+                                <sup>2</sup>
+                              </span>
+                            </li>
+{% if premium or user == prop.agent %}
+                            <li class="d-flex justify-content-between">
+                              <strong>Street Address:</strong>
+                              <span>{{prop.street_address}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Length:</strong>
+                              <span>{{prop_details.length}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Breadth:</strong>
+                              <span>{{prop_details.breadth}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Floors Allowed For Construction:</strong>
+                              <span>{{prop_details.floors_allowed}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Facing:</strong>
+                              <span>{{prop_details.facing}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Overlooking:</strong>
+                              <span>{{prop_details.overlooking}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Possession:</strong>
+                              <span>{{prop_details.possession}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                              <strong>Boundary Wall:</strong>
+                              {%if boundary_wall%}
+                              <span>Yes</span>
+                              {%else%}
+                              <span>No</span>
+                              {%endif%}
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Transaction Type:</strong>
+                                <span>{{prop_details.transaction_type}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Property Ownership:</strong>
+                                <span>{{prop_details.property_ownership}}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Width Of Facing Road:</strong>
+                                <span>{{prop_details.width_of_facing_road}}</span>
+                            </li>
+{%endif%}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-lg-7 section-md-t3">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="title-box-d">
+                            <h3 class="title-d">Property Description:</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="property-description">
+{%if premium or user == prop.agent %}
+                        <p class="description color-text-a">
+                          {{prop_details.description}}
+                        </p>
+                      </div>
+                      {% if prop_features %}
+                      <div class="row section-t3">
+                        <div class="col-sm-12">
+                          <div class="title-box-d">
+                            <h3 class="title-d">Extra Features</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="amenities-list color-text-a">
+                        <ul class="list-a no-margin">
+                          {% for feature in prop_features %}
+                            <li style="margin-right: 20px;">{{feature.feature}}</li>
+                          {%endfor%}
+                        </ul>
+                      </div>
+                      {%endif%}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-10 offset-md-1" style="text-align: center;">
+                  <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-video-tab" data-bs-toggle="pill" href="#pills-video" role="tab" aria-controls="pills-video" aria-selected="true">Video</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-map-tab" data-bs-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false">Map</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent" style="text-align: center;">
+                    <div class="tab-pane fade show active" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
+                        <iframe src="{{prop_details.yt_video|safe}}" width="100%" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <div class="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+                        <iframe src="{{prop_details.map|safe}}" width="100%" height="460" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="row section-t3">
+                    <div class="col-sm-12">
+                      <div class="title-box-d">
+                        <h3 class="title-d">Contact Agent</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                      <img src="{{agent_details.profile_picture.url}}" alt="" class="img-fluid" width="600" height="800">
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                      <div class="property-agent">
+                        <h4 class="title-agent">{{prop.agent.first_name}} {{prop.agent.last_name}}</h4>
+                        <p class="color-text-a">
+                          {{agent_details.description}}
+                        </p>
+                        <ul class="list-unstyled">
+                          <li class="d-flex justify-content-between">
+                            <strong>Mobile:</strong>
+                            <span class="color-text-a">{{agent_details.mobile_number}}</span>
+                          </li>
+                          <li class="d-flex justify-content-between">
+                            <strong>Email:</strong>
+                            <span class="color-text-a">{{prop.agent.email}}</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                      <div class="property-contact">
+                        <form class="form-a">
+                          <div class="row">
+                            <div class="col-md-12 mb-1">
+                              <div class="form-group">
+                                <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
+                              </div>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                              <div class="form-group">
+                                <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
+                              </div>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                              <div class="form-group">
+                                <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                              <button type="submit" class="btn btn-a">Send Message</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section><!-- End Property Single-->
+    </div>
+{%else%}
+    <p class="description color-text-a">
+            <h2>This is a <span style="color: #068932;">PREMIUM</span> property</h2>
+            <p>The extra property details and contact details 
+                of this property can only be viewed by premium
+                clients. You can purchase premium <a href="/premium">here</a>.
+            </p>
+    </p>
+    </div>              
+    </div>              
+    </div>              
+    </div>              
+    </div>              
+    </section><!-- End Property Single-->
+    </div>
+{%endif%}
+{%endblock%}

@@ -1,0 +1,23 @@
+{%extends 'testing/basev3.html'%}
+{%block title %}
+Confirm Delete?
+{%endblock%}
+{%block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+    <h1>Are you sure you want to delete {{item}}?</h1>
+    <br>
+    <br>
+    <form method="post">
+        {%csrf_token%}
+        <div class="container" style="text-align: center;">
+        <button type="submit" class="btn btn-primary" style="background-color: #068932; border-color: #068932; margin-right: 20px;">Yes</button>
+        <button onclick="location.href='/home'" class="btn btn-primary"` style="color: white;background-color: black; border-color: black;">No</button>
+        </div>
+    </form>
+    </div>
+{%endblock%}
